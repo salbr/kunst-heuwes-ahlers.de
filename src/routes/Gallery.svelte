@@ -107,6 +107,7 @@
     await getImageMetaData(selectedImage);
   }
   function filterImages(year: string) {
+	selectedYear = year;
     filteredImages = [];
     if (year === "all") {
       filteredImages = items.slice(0, -1);
@@ -149,6 +150,9 @@
       </div>
     {/each}
   </div>
+  {#if selectedYear !== "all"}
+	<div class="currentYearHeadline"> {selectedYear}</div>
+  {/if}
   <div class="galleryContainer-xs">
     {#each filteredImages as image}
       <div class="galleryItem">
@@ -195,6 +199,16 @@
 </section>
 
 <style>
+	  .currentYearHeadline {
+	display:flex;
+	justify-content: center;
+	min-width: 70vw;
+	border-bottom: 1px solid black;
+	font-size: 3rem;
+	font-family: 'Raleway-Bold';
+	color: black;
+	text-align: center;
+  }
   .modal {
     background-color: white;
     height: 100vh;
