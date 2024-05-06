@@ -42,7 +42,7 @@
 			opacity 0.5s,
 			visibility 0.5s;
 		position: fixed;
-		z-index: 99;
+		
 		right: 7%;
         
 		user-select: none;
