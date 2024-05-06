@@ -30,14 +30,19 @@
 		</p>
 	</div>
 	<div class="contactForm">
-		<form on:submit={handleOnSubmit}>
+		<form action="https://api.staticforms.xyz/submit" method="post">
 			<Label class="label" for="name">Name</Label>
-			<Input class="input" id="name" type="text" placeholder="Ihr Name" />
+			<Input class="input" id="name" name="name" type="text" placeholder="Ihr Name" />
 			<Label class="label" for="email">E-Mail</Label>
-			<Input class="input" id="email" type="email" placeholder="Ihre E-Mail" />
+			<Input class="input" id="email" name="email" type="email" placeholder="Ihre E-Mail" />
 			<Label class="label" for="message">Nachricht</Label>
-			<textarea class="textarea" id="message" placeholder="Ihre Nachricht"></textarea>
+			<textarea class="textarea" id="message" name="message" placeholder="Ihre Nachricht"></textarea>
 			<button class="contactButton" type="submit">Absenden</button>
+			<input type="text" name="honeypot" style="display:none">
+			<input type="hidden" name="accessKey" value="598031a5-631e-458d-8613-4b86d81aaa8e">
+			<input type="hidden" name="subject" value="Kontaktformular kunst-heuwes-ahlers.de" />
+			<input type="hidden" name="redirectTo" value="https://kunst-heuwes-ahlers.de/kontakt">
+			<input type="hidden" name="replyTo" value="@">
 		</form>
 	</div>
 </div>
