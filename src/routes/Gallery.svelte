@@ -26,7 +26,6 @@
   const imgClass = "xs:h-52 md:h-64 lg:h-80 xl:h-96";
 
   function keypressModalHandler(event) {
-    console.log(`event.key: ${event.key}`);
     if (clickOutsideModal) {
       if (event.key === "Escape") {
         closeModal();
@@ -49,7 +48,6 @@
   async function getImageMetaData(image: ImgType) {
     const filetype = image.src.split(".").slice(-1)[0];
     const metadata_filename = image.src.replace(filetype, "ini");
-    console.log(`metadata_filename: ${metadata_filename}`);
     const metadata = await fetch(metadata_filename);
     const metadataText = await metadata.text();
     const metadataLines = metadataText.split("\n");
@@ -61,7 +59,6 @@
       status: "",
     };
     for (const line of metadataLines) {
-      console.log(`line: ${line}`);
       const key = line.split("=")[0];
       const value = line.split("=")[1];
       switch (key.toLowerCase()) {
@@ -83,7 +80,6 @@
       }
     }
     selectedImageMetadata = metadataObject;
-    console.log(`selectedImageMetadata: ${metadataObject.material}`);
   }
 
   async function onSwipeLeft() {
@@ -105,7 +101,6 @@
 	disableBackToTopButton = false;
   }
   async function openModal(selImage: ImgType) {
-    console.log(`openModal selImage: ${selImage.src}`);
     clickOutsideModal = true;
     selectedImage = selImage;
 	disableBackToTopButton = true;
