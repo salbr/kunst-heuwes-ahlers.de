@@ -8,6 +8,8 @@ layout: blog
     
 </script>
 
+<h1>„Die Kunst die Farben des Lebens einzufangen“</h1>
+
 <img src={vita_pic}>
 
 <h1/>
@@ -43,33 +45,8 @@ Seit 2003 verstärkt künstlerisch tätig, seit 2007 unter fachlicher Anleitung 
 
 **Teilnahme an Sommerakademien (Schwalenberg und Schloss Neuhaus)**
 
-2007 „Collage in Verbindung mit Malerei“ bei Dagmar Diekmann
+Seit 2007 jährliche Teilnahme an der Sommerakademie unter anderem bei Dagmar Diekmann, Klaus Möllers, Axel Plöger, Christiane Middendorf und Evelyn Sommerhoff.
 
-2008 „Collage in Verbindung mit Malerei“ bei Dagmar Diekmann
-
-2010 „Bildfindung, Malerei mit Acryl und Gouache“ bei Klaus Möllers
-
-2011 „Bildfindung, Malerei mit Acryl und Gouache“ bei Klaus Möllers
-
-2012 „Bildfindung, Malerei mit Acryl und Gouache“ bei Klaus Möllers
-
-2013 „Freie Malerei mit Acryl“ bei Axel Plöger
-
-2014 „Freie Malerei mit Acryl“ bei Axel Plöger
-
-2015 „Freie Malerei mit Acryl“ bei Axel Plöger
-
-2016 „Magie der Farben“ bei Christiane Middendorf
-
-2017 „Freie Malerei“ bei Axel Plöger
-
-2018 „Schritte in die Abstraktion“ bei Brigitte Waldschmidt
-
-2019 „freie Malerei mit  Öl- und Arylfarben“ bei Axel Plöger
-
-2020 „freies Zeichnen und Malen“ bei Evelyn Sommerhoff
-
-2021 „freies Zeichnen und Malen“ bei Evelyn Sommerhoff
 
 <h1/>
 
@@ -127,21 +104,7 @@ Eigenes Atelier **„Kunst im Anbau“** Sofienstr. 35, 32756 Detmold
 
 **Veranstaltungen**
 
-2014 Teilnahme an den offenen Ateliers Lippe
-
-2015 Teilnahme an der Schwalenberger Kunstnacht
-
-2015 Teilnahme an den offenen Ateliers Lippe
-
-2016 Teilnahme an den offenen Ateliers Lippe
-
-2017 Teilnahme an der Weihnachtsausstellung Schwalenberg
-
-2018 Teilnahme an den offenen Ateliers Lippe
-
-2019 Kunst zum Schauen, Kaufen und Verschenken im Seminarhaus Brokhausen
-
-2020 Teilnahme an den offenen Ateliers Lippe
+Seit 2014 regelmäßige Teilnahme an den offenen Ateliers in Lippe.
 
 <h1/>
 
@@ -180,7 +143,7 @@ img {
     h1{
         padding-bottom: 5%;
         font-size: x-large;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Raleway-Bold'
     }
 
 

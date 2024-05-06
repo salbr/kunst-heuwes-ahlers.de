@@ -10,7 +10,7 @@
   let filteredImages: ImgType[] = items.slice(0, -1);
   const years: string[] = [];
   const currentYear = new Date().getFullYear();
-  for (let i = 2013; i <= currentYear; i++) {
+  for (let i = 2014; i <= currentYear; i++) {
     years.push(i.toString());
   }
   let clickOutsideModal = false;
