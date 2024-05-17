@@ -5,7 +5,7 @@
 	let hidden = true;
 
 	function goTop() {
-		document.body.scrollIntoView();
+		document.body.scrollIntoView({ behavior: "smooth" });
 	}
 
 	function scrollContainer() {
@@ -42,8 +42,7 @@
 			opacity 0.5s,
 			visibility 0.5s;
 		position: fixed;
-		
-		right: 7%;
+		right: 13%;
         
 		user-select: none;
 		bottom: 5%;

@@ -98,16 +98,16 @@
   }
   function closeModal() {
     clickOutsideModal = false;
-	disableBackToTopButton = false;
+    disableBackToTopButton = false;
   }
   async function openModal(selImage: ImgType) {
     clickOutsideModal = true;
     selectedImage = selImage;
-	disableBackToTopButton = true;
+    disableBackToTopButton = true;
     await getImageMetaData(selectedImage);
   }
   function filterImages(year: string) {
-	selectedYear = year;
+    selectedYear = year;
     filteredImages = [];
     if (year === "all") {
       filteredImages = items.slice(0, -1);
@@ -151,7 +151,7 @@
     {/each}
   </div>
   {#if selectedYear !== "all"}
-	<div class="currentYearHeadline"> {selectedYear}</div>
+    <div class="currentYearHeadline">{selectedYear}</div>
   {/if}
   <div class="galleryContainer-xs">
     {#each filteredImages as image}
@@ -162,7 +162,7 @@
       </div>
     {/each}
   </div>
-  <Modal size="xl"  bind:open={clickOutsideModal} autoclose outsideclose autofocus>
+  <Modal size="xl" bind:open={clickOutsideModal} autoclose outsideclose autofocus>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <div
       class="modalContainer"
@@ -199,21 +199,23 @@
 </section>
 
 <style>
-	  .currentYearHeadline {
-	display:flex;
-	justify-content: center;
-	min-width: 70vw;
-	border-bottom: 1px solid black;
-	font-size: 3rem;
-	font-family: 'Raleway-Bold';
-	color: black;
-	text-align: center;
+  .currentYearHeadline {
+    display: flex;
+    justify-content: center;
+    min-width: 70vw;
+    border-bottom: 1px solid black;
+    font-size: 3rem;
+    font-family: "Raleway-Bold";
+    color: black;
+    text-align: center;
   }
   .modal {
     background-color: white;
     height: 100vh;
+
   }
   .modalContainer {
+    
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

@@ -40,6 +40,12 @@
 				<NavLi href="/kontakt">
 					KONTAKT
 				</NavLi>
+				<NavLi href="/impressum">
+					IMPRESSUM
+				</NavLi>
+				<NavLi href="/datenschutz">
+					DATENSCHUTZ
+				</NavLi>
 			</NavUl>
 			<NavHamburger />
 		</NavContainer>
@@ -50,7 +56,9 @@
 	</main>
 
 	<footer>
+
 		<p>© Ruth Heuwes-Ahlers</p>
+
 	</footer>
 </div>
 <BackToTop />
