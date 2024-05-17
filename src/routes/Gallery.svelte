@@ -11,7 +11,14 @@
   const years: string[] = [];
   const currentYear = new Date().getFullYear();
   for (let i = 2014; i <= currentYear; i++) {
-    years.push(i.toString());
+    for (const item of items) {
+      if (item.src.includes(i.toString())) {
+        if (!years.includes(i.toString())) {
+          years.push(i.toString());
+          break;
+        }
+      }
+    }
   }
   let clickOutsideModal = false;
   let selectedYear = "all";
@@ -212,10 +219,8 @@
   .modal {
     background-color: white;
     height: 100vh;
-
   }
   .modalContainer {
-    
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
