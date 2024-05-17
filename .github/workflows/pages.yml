@@ -20,9 +20,9 @@ jobs:
       #     version: 8
       - name: Clean up filenames
         run: |
-          find . -name '*.JPG' | sed -e 's/.JPG/.jpg/g'
-          find . -name '*.JPEG' | sed -e 's/.JPEG/.jpeg/g'
-          find . -name '*.PNG' | sed -e 's/.PNG/.png/g'
+          find . -type f -name '*.JPG' -exec sh -c 'mv "$1" "${1%.*}.jpg"' sh {} \;
+          find . -type f -name '*.JPEG' -exec sh -c 'mv "$1" "${1%.*}.jpeg"' sh {} \;
+          find . -type f -name '*.PNG' -exec sh -c 'mv "$1" "${1%.*}.png"' sh {} \;
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
