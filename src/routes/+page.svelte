@@ -5,11 +5,8 @@
 	import { Modal } from 'flowbite-svelte';
 	import type { ImageMetaData } from '$lib/types/ImageMetaData.interface';
 	const currentYear: number = new Date().getFullYear();
-	const jpg_images = import.meta.glob('./../../static/images/kunstwerke/**/*.jpg', {eager: true});
-	const JPG_images = import.meta.glob('./../../static/images/kunstwerke/**/*.JPG', {eager: true});
-	const png_images = import.meta.glob('./../../static/images/kunstwerke/**/*.png', {eager: true});
-	const PNG_images = import.meta.glob('./../../static/images/kunstwerke/**/*.PNG', {eager: true});
-	const images = {...jpg_images, ...JPG_images, ...png_images, ...PNG_images};
+	const jpg_images = import.meta.glob('./../../static/images/kunstwerke/**/*.{jpg,jpeg,png}', {eager: true});
+	const images = {...jpg_images};
 	const galleryImages: ImgType[] = [];
 	const years: string[] = [];
 
