@@ -10,7 +10,7 @@ layout: blog
 
 <h1>„Die Kunst die Farben des Lebens einzufangen“</h1>
 
-<img src={vita_pic}>
+<img src="/images/DSC08052.jpg" alt="Portrait von Ruth vor einem ihrer Gemälde">
 
 <h1/>
     
@@ -24,19 +24,14 @@ Tel. 05231/3012010
 
 **(Künstlerischer Werdegang)**
 
+<ul>
+    <li>1965 am Niederrhein geboren, aufgewachsen in Oberhausen, verheiratet, 2 Töchter</li>
+    <li>Ausbildung zur Krankenschwester</li>
+    <li>Studium der Sozialpädagogik in Aachen mit Belegung u.a. kunstpädagogischer Seminare</li>
+    <li>Arbeit in diversen Beratungsstellen (mit gestalterischen, kreativen Interventionen)</li>
+    <li>aktuell: Praxis für Kinder- und Jugendpsychiatrie und Psychotherapie in Detmold und eigene Praxis in Detmold „Praxis für Einzel- und Elternberatung“ <a href="https://www.heuwes-ahlers.de">www.heuwes-ahlers.de</a></li>
+</ul>
 
-- 1965 am Niederrhein geboren, aufgewachsen in Oberhausen, verheiratet, 2 Töchter
-
-- Ausbildung zur Krankenschwester
-
-- Studium der Sozialpädagogik in Aachen mit Belegung u.a. kunstpädagogischer Seminare
-
-- Arbeit in diversen Beratungsstellen (mit gestalterischen, kreativen Interventionen)
-
-- aktuell: Praxis für Kinder- und Jugendpsychiatrie und Psychotherapie in Detmold
-
-- und eigene Praxis in Detmold „Praxis für Einzel- und Elternberatung“ www.heuwes-ahlers.de
- 
 
 
 Seit 2003 verstärkt künstlerisch tätig, seit 2007 unter fachlicher Anleitung z.B.
@@ -78,9 +73,14 @@ Dieter Laue, Internationale Kunstakademie Heimbach
 
 **Seit 2012**
 
+
 Eigenes Atelier **„Kunst im Anbau“** Sofienstr. 35, 32756 Detmold
 
 <h1/>
+
+
+<img src="/images/DSCN3718.jpg" alt="Ruth in ihrem Atelier beim Malen">
+
 
 **Ausstellungen**
 
@@ -125,20 +125,20 @@ Seit 2014 regelmäßige Teilnahme an den offenen Ateliers in Lippe.
 
 Lippische Landeszeitung 9.11.2015
 
-Internetblog von G.WASA-kulturkritik (www.mefifoto.de)
+Internetblog von G.WASA-kulturkritik <a href="http://www.mefifoto.de">www.mefifoto.de</a>
 
 
 
 
 <style>
-
+a{
+    text-decoration: underline;
+}
 img {
         border: none;
         border-radius: 2em;
+        margin-bottom: 2em;
       
-    }
-    h1 h2 h3 h4 h5 h6 {
-        font-weight: bold;
     }
     h1{
         padding-bottom: 5%;
