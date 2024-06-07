@@ -2,8 +2,7 @@
 
 ## RUTH HEUWES-AHLERS
 
-Sofienstr. 35  
-32756 Detmold
+
 Tel. 05231/3012010
 
 
