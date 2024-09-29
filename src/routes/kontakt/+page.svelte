@@ -23,8 +23,6 @@
 		</p>
 		<h4>Ruth Heuwes-Ahlers</h4>
 		<p>
-			Sofienstr. 35 <br />
-			32756 Detmold <br />
 			Fon: 05231/3012010 <br />
 			Email: info@kunst-heuwes-ahlers.de
 		</p>
