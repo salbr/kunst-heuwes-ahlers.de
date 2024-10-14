@@ -14,13 +14,6 @@
 		'underline';
 	const nonActiveClass =
 		'hover:underline';
-
-	const years: { name: string; path: string }[] = [];
-	const maxYear = new Date().getFullYear() - 2013;
-	for (let i = 0; i++; i < maxYear) {
-		console.log('i: ', i);
-		years.push({ name: i.toString(), path: `/${i}` });
-	}
 </script>
 
 <div class="app">
