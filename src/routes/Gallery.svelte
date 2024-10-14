@@ -10,10 +10,12 @@
   let filteredImages: ImgType[] = items.slice(0, -1);
   const years: string[] = [];
   const currentYear = new Date().getFullYear();
-  for (let i = 2014; i <= currentYear; i++) {
+  for (let i = currentYear ; i > 2013; i--) {
+    console.log(`Year = ${i}`)
     for (const item of items) {
       if (item.src.includes(i.toString())) {
         if (!years.includes(i.toString())) {
+          console.log(`add Year = ${i} to years`)
           years.push(i.toString());
           break;
         }
@@ -21,7 +23,8 @@
     }
   }
   let clickOutsideModal = false;
-  let selectedYear = "all";
+  let selectedYear = years[0];
+  filterImages(selectedYear);
   let selectedImage: ImgType = { src: "", alt: "" };
   let selectedImageMetadata: ImageMetaData = {
     title: "",
@@ -117,7 +120,7 @@
     selectedYear = year;
     filteredImages = [];
     if (year === "all") {
-      filteredImages = items.slice(0, -1);
+      filteredImages = items.slice(0, -1).reverse();
       return;
     }
     for (const img of items) {
