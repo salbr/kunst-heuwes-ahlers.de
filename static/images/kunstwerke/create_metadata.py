@@ -3,7 +3,7 @@ import os
 data = []
 with open('./metadata_with_links.txt', 'r') as f:
     for line in f:
-        if not 'NO. ' in line:
+        if 'NO. ' not in line:
             line.replace('NO.', 'NO. ')
         split = line.split(' ')
         
@@ -17,11 +17,11 @@ with open('./metadata_with_links.txt', 'r') as f:
         material = " ".join(split[material_index_start: material_end_index])
         format_end_index = split.index('STATUS') if 'STATUS' in split else -1
         format = " ".join(split[material_end_index + 1: format_end_index])
-        if not ' x ' in format:
+        if ' x ' not in format:
             format = format.replace('x', ' x ')
         if 'CM' in format:
             format = format.replace('CM', 'cm')
-        if not ' cm' in format:
+        if ' cm' not in format:
             format = format.replace('cm', ' cm')
         status = ''
         if 'STATUS' in split:
