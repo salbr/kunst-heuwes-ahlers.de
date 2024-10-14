@@ -2,18 +2,9 @@
 	const prerender = true;
 	import type { ImgType } from 'flowbite-svelte';
 	import Gallery from './Gallery.svelte';
-	import { Modal } from 'flowbite-svelte';
-	import type { ImageMetaData } from '$lib/types/ImageMetaData.interface';
 	const currentYear: number = new Date().getFullYear();
-	const jpg_images = import.meta.glob('./../../static/images/kunstwerke/**/*.{jpg,jpeg,png}', {eager: true});
-	const images = {...jpg_images};
+	const images = import.meta.glob('./../../static/images/kunstwerke/**/*.{jpg,jpeg,png}', {eager: true});
 	const galleryImages: ImgType[] = [];
-	const years: string[] = [];
-
-	for (let i = 2013; i <= new Date().getFullYear(); i++) {
-		const year = i.toString();
-		years.push(year);
-	}
 
 	for (const path in images) {
 		const imagename = path.split('/').pop();
