@@ -1,11 +1,8 @@
-
-
 ## RUTH HEUWES-AHLERS
 
 Sofienstr. 35  
 32756 Detmold
 Tel. 05231/3012010
-
 
 **(Künstlerischer Werdegang)**
 
@@ -15,8 +12,7 @@ Tel. 05231/3012010
 - Arbeit in diversen Beratungsstellen (mit gestalterischen, kreativen Interventionen)
 - aktuell: Praxis für Kinder- und Jugendpsychiatrie und Psychotherapie in Detmold
 - und eigene Praxis in Detmold „Praxis für Einzel- und Elternberatung“
-	- [https://www.heuwes-ahlers.de](https://www.heuwes-ahlers.de)
-
+  - [https://www.heuwes-ahlers.de](https://www.heuwes-ahlers.de)
 
 Seit 2003 verstärkt künstlerisch tätig, seit 2007 unter fachlicher Anleitung z.B.
 
