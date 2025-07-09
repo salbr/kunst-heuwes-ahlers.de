@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Modal, type ImgType } from "flowbite-svelte";
-  import { swipe } from "svelte-gestures";
+  import { swipe, type SwipeCustomEvent } from "svelte-gestures";
   import { Button } from "flowbite-svelte";
   import type { ImageMetaData } from "$lib/types/ImageMetaData.interface";
   export let items: ImgType[];
@@ -11,11 +11,9 @@
   const years: string[] = [];
   const currentYear = new Date().getFullYear();
   for (let i = currentYear ; i > 2013; i--) {
-    console.log(`Year = ${i}`)
     for (const item of items) {
       if (item.src.includes(i.toString())) {
         if (!years.includes(i.toString())) {
-          console.log(`add Year = ${i} to years`)
           years.push(i.toString());
           break;
         }
@@ -23,6 +21,8 @@
     }
   }
   let clickOutsideModal = false;
+  //needed for modal
+  let previousActiveElement: Element | null = null;
   let selectedYear = years[0];
   filterImages(selectedYear);
   let selectedImage: ImgType = { src: "", alt: "" };
@@ -35,11 +35,10 @@
   };
   const imgClass = "xs:h-52 md:h-64 lg:h-80 xl:h-96";
 
-  function keypressModalHandler(event) {
-    if (clickOutsideModal) {
-      if (event.key === "Escape") {
-        closeModal();
-      }
+  function keypressModalHandler(event: KeyboardEvent) {
+    event.preventDefault()
+    if (event.key === "Escape") {
+      closeModal();
     }
     if (event.key === "ArrowLeft") {
       onSwipeLeft();
@@ -47,8 +46,8 @@
       onSwipeRight();
     }
   }
-  function swipeModalHandler(event) {
-    swipeDirection = event.detail.direction;
+  function swipeModalHandler(event: SwipeCustomEvent) {
+    swipeDirection = event.detail?.direction || "";
     if (swipeDirection === "left") {
       onSwipeLeft();
     } else if (swipeDirection === "right") {
@@ -109,12 +108,22 @@
   function closeModal() {
     clickOutsideModal = false;
     disableBackToTopButton = false;
+    // Restore focus to the previously focused element
+    if (previousActiveElement && previousActiveElement instanceof HTMLElement) {
+      previousActiveElement.focus();
+    }
+    previousActiveElement = null;
   }
   async function openModal(selImage: ImgType) {
     clickOutsideModal = true;
     selectedImage = selImage;
     disableBackToTopButton = true;
     await getImageMetaData(selectedImage);
+      // Focus the modal container after it's rendered
+    setTimeout(() => {
+      const modalContainer = document.querySelector('.modalContainer') as HTMLElement;
+      modalContainer.focus();
+    }, 0);
   }
   function filterImages(year: string) {
     selectedYear = year;
@@ -146,7 +155,7 @@
   }
 </script>
 
-<svelte:window on:keypress|preventDefault={keypressModalHandler} />
+<svelte:window />
 <section>
   <div class="yearFilterButtonGroup">
     <div class="yearButton">
@@ -173,13 +182,13 @@
     {/each}
   </div>
   <Modal size="xl" bind:open={clickOutsideModal} autoclose outsideclose autofocus>
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <div
       class="modalContainer"
-      use:swipe={{ timeframe: 300, minSwipeDistance: 50, touchAction: "pan-y" }}
+      use:swipe={() =>({ timeframe: 300, minSwipeDistance: 50, touchAction: "pan-y" })}
       on:swipe={swipeModalHandler}
-      on:keypress={keypressModalHandler}
+      on:keydown={keypressModalHandler}
       role="dialog"
+      tabindex="-1"
     >
       {#if selectedImageMetadata.title}
         <h1 class="modalHeader">NO. {selectedImageMetadata.title}</h1>

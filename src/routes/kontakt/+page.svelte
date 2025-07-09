@@ -1,13 +1,5 @@
 <script>
 	import { Label, Input } from 'flowbite-svelte';
-
-    function handleOnSubmit(event) {
-        event.preventDefault();
-        const name = event.target.name.value;
-        const email = event.target.email.value;
-        const message = event.target.message.value;
-        console.log(name, email, message);
-    }
 </script>
 
 <svelte:head>
@@ -52,17 +44,6 @@
 		border: solid 1px #000;
 		border-radius: 4px;
 		width: 100%;
-	}
-	.input {
-		max-width: 300px;
-		padding: 10px;
-		margin-bottom: 1em;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-	.label {
-		padding: 4px;
 	}
 	textarea {
 		width: 100%;
