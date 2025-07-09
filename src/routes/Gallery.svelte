@@ -181,40 +181,48 @@
       </div>
     {/each}
   </div>
-  <Modal size="xl" bind:open={clickOutsideModal} autoclose outsideclose autofocus>
-    <div
-      class="modalContainer"
-      use:swipe={() =>({ timeframe: 300, minSwipeDistance: 50, touchAction: "pan-y" })}
-      on:swipe={swipeModalHandler}
-      on:keydown={keypressModalHandler}
-      role="dialog"
-      tabindex="-1"
-    >
-      {#if selectedImageMetadata.title}
-        <h1 class="modalHeader">NO. {selectedImageMetadata.title}</h1>
-      {/if}
+<Modal size="xl" bind:open={clickOutsideModal} autoclose outsideclose autofocus>
+  <div
+    class="modalContainer"
+    use:swipe={() =>({ timeframe: 300, minSwipeDistance: 50, touchAction: "pan-y" })}
+    on:swipe={swipeModalHandler}
+    on:keydown={keypressModalHandler}
+    role="dialog"
+    tabindex="-1"
+  >
+    {#if selectedImageMetadata.title}
+      <h1 class="modalHeader">NO. {selectedImageMetadata.title}</h1>
+    {:else}
+      <h1 class="modalHeader" style="visibility: hidden;">NO. </h1>
+    {/if}
+    
+    <div class="modalImageContainer">
       <img class="modalImage" src={selectedImage.src} alt={selectedImage.alt} />
-      {#if selectedImageMetadata.year}
-        <h6 class="modalHeader">JAHR</h6>
-        <p class="modalDescription">{selectedImageMetadata.year}</p>
-        <br />
-      {/if}
-      {#if selectedImageMetadata.material}
-        <h6 class="modalHeader">MATERIAL</h6>
-        <p class="modalDescription">{selectedImageMetadata.material}</p>
-        <br />
-      {/if}
-      {#if selectedImageMetadata.format}
-        <h6 class="modalHeader">FORMAT</h6>
-        <p class="modalDescription">{selectedImageMetadata.format}</p>
-        <br />
-      {/if}
-      {#if selectedImageMetadata.status}
-        <h6 class="modalHeader">STATUS</h6>
-        <p class="modalDescription">{selectedImageMetadata.status}</p>
-      {/if}
     </div>
-  </Modal>
+    
+    <div class="modalMetadata">
+      <div class="modalMetadataItem">
+        <h6 class="modalHeader">JAHR</h6>
+        <p class="modalDescription">{selectedImageMetadata.year || ''}</p>
+      </div>
+      
+      <div class="modalMetadataItem">
+        <h6 class="modalHeader">MATERIAL</h6>
+        <p class="modalDescription">{selectedImageMetadata.material || ''}</p>
+      </div>
+      
+      <div class="modalMetadataItem">
+        <h6 class="modalHeader">FORMAT</h6>
+        <p class="modalDescription">{selectedImageMetadata.format || ''}</p>
+      </div>
+      
+      <div class="modalMetadataItem">
+        <h6 class="modalHeader">STATUS</h6>
+        <p class="modalDescription">{selectedImageMetadata.status || ''}</p>
+      </div>
+    </div>
+  </div>
+</Modal>
 </section>
 
 <style>
@@ -232,15 +240,58 @@
     background-color: white;
     height: 100vh;
   }
-  .modalContainer {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-  }
-  .modalImage {
-    max-height: 58vh;
-  }
+.modalContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 600px; /* Fixed minimum height */
+}
+
+.modalImageContainer {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.modalImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.modalMetadata {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.modalMetadataItem {
+  min-height: 60px; /* Reserve space for each metadata item */
+  margin-bottom: 10px;
+}
+
+.modalHeader {
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+  text-align: center; /* Center the headers too */
+}
+
+.modalDescription {
+  font-weight: normal;
+  color: black;
+  min-height: 20px; /* Reserve space for description */
+  text-align: center;
+}
   .galleryContainer-xs {
     display: flex;
     flex-flow: row wrap;
