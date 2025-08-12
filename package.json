@@ -8,11 +8,6 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
-  "overrides": {
-    "svelte-markdown": {
-      "svelte": "^5.0.0"
-    }
-  },
   "devDependencies": {
     "@fontsource/fira-mono": "^5.2.6",
     "@sveltejs/adapter-static": "^3.0.9",
