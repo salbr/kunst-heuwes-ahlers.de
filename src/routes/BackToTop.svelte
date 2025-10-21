@@ -35,29 +35,48 @@
 
 <style>
 	.back-to-top {
-		opacity: 1;
-		transition:
-			opacity 0.5s,
-			visibility 0.5s;
 		position: fixed;
-		right: 13%;
-        
-		user-select: none;
-		bottom: 5%;
-		color: black;
+		bottom: 2rem;
+		right: 2rem;
+		width: 3rem;
+		height: 3rem;
+		background: white;
+		border: 2px solid black;
+		border-radius: 50%;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 1;
+		transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+		z-index: 999;
+		padding: 0.5rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 	}
 
-    svg.backtotopBtn {
-	stroke: black;
-	fill: black;
-	stroke-width: 0;
-	width: 100%;
-	height: 5vh;
-	max-height: 100%;
-}
+	.back-to-top:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	}
 
 	.back-to-top.hidden {
 		opacity: 0;
 		visibility: hidden;
+	}
+
+	svg.backtotopBtn {
+		stroke: black;
+		fill: black;
+		width: 100%;
+		height: 100%;
+	}
+
+	@media (max-width: 768px) {
+		.back-to-top {
+			bottom: 1rem;
+			right: 1rem;
+			width: 2.5rem;
+			height: 2.5rem;
+		}
 	}
 </style>

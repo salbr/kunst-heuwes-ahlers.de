@@ -109,6 +109,7 @@
     .vita-main {
         max-width: 800px;
         align-self: center;
+        padding: 1rem;
     }
     a {
         text-decoration: underline;
@@ -117,6 +118,8 @@
         border: none;
         border-radius: 2em;
         margin-bottom: 2em;
+        max-width: 100%;
+        height: auto;
     }
     h1 {
         padding-top: 4%;

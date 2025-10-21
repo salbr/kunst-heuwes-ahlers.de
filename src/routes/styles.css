@@ -1,56 +1,162 @@
-@import "@fontsource/fira-mono";
-@font-face {
-  font-family: "Raleway-Light";
-  src: url("/fonts/raleway/Raleway-Light.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Raleway-Bold";
-  src: url("/fonts/raleway/Raleway-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Raleway-Regular";
-  src: url("/fonts/raleway/Raleway-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Raleway-ExtraBold";
-  src: url("/fonts/raleway/Raleway-ExtraBold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Raleway-ExtraLight";
-  src: url("/fonts/raleway/Raleway-ExtraLight.ttf") format("truetype");
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 :root {
-  --font-body: "Raleway-Regular", Arial, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
-  --font-mono: "Fira Mono", monospace;
-  --color-bg-0: rgb(202, 216, 228);
-  --color-bg-1: hsl(209, 36%, 86%);
-  --color-bg-2: hsl(224, 44%, 95%);
-  --color-theme-1: #ff3e00;
-  --color-theme-2: #4075a6;
+  /* Typography */
+  --font-body: 'Raleway-Regular', Arial, sans-serif;
+  --font-bold: 'Raleway-Bold', Arial, sans-serif;
+  --font-mono: 'Fira Mono', monospace;
+
+  /* Colors */
   --color-text: rgba(0, 0, 0, 0.7);
-  --column-width: 42rem;
-  --column-margin-top: 4rem;
+  --color-text-dark: rgba(0, 0, 0, 0.9);
+  --color-border: #e5e5e5;
+  --color-bg: #ffffff;
+  --color-hover: #f5f5f5;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+
+  /* Breakpoints (use in media queries) */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1440px;
+}
+
+/* Typography Scale */
+body {
   font-family: var(--font-body);
   color: var(--color-text);
+  line-height: 1.6;
 }
 
-body {
-  min-height: 100vh;
-  margin: 0;
+h1 {
+  font-size: 2rem;
+  font-family: var(--font-bold);
 }
 
-h1,
-h2,
+h2 {
+  font-size: 1.5rem;
+  font-family: var(--font-bold);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-family: var(--font-bold);
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-family: var(--font-bold);
+}
+
+h5,
+h6 {
+  font-size: 1rem;
+  font-family: var(--font-bold);
+}
+
 p {
-  font-weight: 400;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-sm);
 }
 
-p {
-  line-height: 1.5;
+/* Buttons */
+.btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.15s;
+  font-family: var(--font-body);
 }
 
+.btn:hover {
+  background: var(--color-hover);
+}
+
+.btn:focus {
+  outline: 2px solid #27292d;
+  outline-offset: 2px;
+}
+
+/* Links */
 a {
+  color: var(--color-text-dark);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Containers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-sm);
+}
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-sm);
+}
+/* Image Responsive Sizing */
+.img-gallery {
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+@media (min-width: 768px) {
+  .img-gallery {
+    height: 24rem;
+  }
+}
+@media (min-width: 1024px) {
+  .img-gallery {
+    height: 28rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .img-gallery {
+    height: 32rem;
+  }
+}
+
+/* Form Elements */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-text-dark);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
 }
