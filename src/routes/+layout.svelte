@@ -1,6 +1,6 @@
 <script lang="ts">
 import { page } from '$app/stores';
-import logo from '../lib/images/logo.png';
+import logo from '../lib/images/logo.svg';
 import './styles.css';
 import BackToTop from './BackToTop.svelte';
 
@@ -155,7 +155,10 @@ const links = [
     padding: 0;
   }
 }
-
+.nav-brand img {
+  height: 50px;
+  width: auto;
+}
 main {
   display: flex;
   justify-content: center;

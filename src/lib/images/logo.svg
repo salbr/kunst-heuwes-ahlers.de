@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40">
+  <defs>
+    <style>
+      .text-main {
+        font-family: 'Raleway', Arial, sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 2px;
+        fill: #000;
+      }
+      .text-sub {
+        font-family: 'Raleway', Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+        fill: #000;
+      }
+    </style>
+  </defs>
+  
+  <text x="5" y="18" class="text-main">KUNST IM ANBAU</text>
+  <text x="5" y="30" class="text-sub">RUTH HEUWES-AHLERS</text>
+</svg>
