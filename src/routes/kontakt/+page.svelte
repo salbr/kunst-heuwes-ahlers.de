@@ -48,11 +48,6 @@
   border-color: black;
 }
 
-
-.contactButton:hover {
-  background: #f5f5f5;
-}
-
 textarea:focus {
   outline: none;
   border-color: black;
