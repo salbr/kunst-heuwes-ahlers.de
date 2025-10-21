@@ -242,15 +242,15 @@ function getPreviousPicture(currentPic: ImgType) {
   }
 
   /* Gallery Grid */
-  .galleryContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
+.galleryContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
 .galleryItem {
   width: 100%;
@@ -259,7 +259,7 @@ function getPreviousPicture(currentPic: ImgType) {
   background-color: white;
   border: 1px solid #e5e5e5;
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 0.75rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -288,155 +288,172 @@ function getPreviousPicture(currentPic: ImgType) {
   transform: scale(1.02);
 }
 
-  /* Responsive Grid */
-  @media (min-width: 640px) {
-    .galleryContainer {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-    
-    .currentYearHeadline {
-      font-size: 3rem;
-    }
+@media (min-width: 640px) {
+  .galleryContainer {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
   }
+}
 
-  @media (min-width: 1024px) {
-    .galleryContainer {
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1.5rem;
-    }
+@media (min-width: 1024px) {
+  .galleryContainer {
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 2.5rem;
   }
+}
 
   /* Modal Styles */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 1rem;
+  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
   animation: fadeIn 0.3s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .modal {
   position: relative;
   background-color: white;
-  border-radius: 0.5rem;
+  border-radius: 0;
   width: 100%;
-  max-width: 800px;
-  max-height: 90vh;
+  height: 100%;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   animation: slideUp 0.3s ease-out;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
+.modal-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #000;
+  z-index: 10;
+  line-height: 1;
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 0.5rem;
+  font-family: "Raleway-Bold";
+}
+
+.modalDescription {
+  font-weight: normal;
+  color: #333333;
+}
+
+.modalMetadata {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+
+.modalMetadataItem {
+  text-align: center;
+  flex: 0 1 auto;
+  min-width: 150px;
+}
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+.modalImageContainer {
+  flex: 0 1 auto;
+  width: 100%;
+  max-width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalImageContainer :global(img) {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .modal-close {
+    top: 2rem;
+    right: 2rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  
+  .modalContainer {
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .modalImageContainer :global(img) {
+    max-height: 65vh;
   }
 }
-  
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #6b7280;
-    z-index: 10;
-    line-height: 1;
-    padding: 0;
-    width: 2rem;
-    height: 2rem;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
-  
-  .modal-close:hover {
-    color: #000;
-    background: #f5f5f5;
+  to {
+    opacity: 0;
   }
+}
 
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@media (min-width: 640px) {
   .modalContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-    gap: 1rem;
-    box-sizing: border-box;
+    padding: 6rem 4rem 4rem 4rem;
   }
-
-  .modalImageContainer {
-    width: 100%;
-    max-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  
   .modalImageContainer :global(img) {
-    max-width: 100%;
-    max-height: 60vh;
-    object-fit: contain;
+    max-height: 75vh;
   }
-
-  .modalMetadata {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .modalMetadataItem {
-    text-align: center;
-  }
-
-  .modalHeader {
-    font-weight: bold;
-    color: black;
-    margin-bottom: 0.5rem;
-    font-family: "Raleway-Bold";
-  }
-
-  .modalDescription {
-    font-weight: normal;
-    color: black;
-  }
-
-  @media (min-width: 640px) {
-    .modalContainer {
-      padding: 2rem;
-    }
-    
-    .modalMetadata {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-    
-    .modalMetadataItem {
-      flex: 1 1 45%;
-    }
-  }
+}
 </style>
