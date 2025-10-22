@@ -193,7 +193,7 @@ function getPreviousPicture(currentPic: ImgType) {
   scrollbar-width: thin;
   width: 100%;
   box-sizing: border-box;
-  justify-content: center; 
+  justify-content: safe center; 
 }
   .yearFilterButtonGroup::-webkit-scrollbar {
     height: 4px;
