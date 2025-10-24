@@ -31,7 +31,25 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+      
+      - name: Move files
+        run: |
+          find static/images/kunstwerke -type f -exec sh -c '
+            src="$1"
+            year=$(echo "$src" | grep -oP "kunstwerke/\K\d{4}")
+            dest="src/lib/images/kunstwerke/$year/$(basename "$src")"
+            mkdir -p "$(dirname "$dest")"
+            mv "$src" "$dest"
+          ' sh {} \;
+          
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "Move files from static/images/kunstwerke to src/lib/images/kunstwerke"
+          git push
+    
       - name: build
         env:
           BASE_PATH: "/${{ github.event.repository.name }}"
