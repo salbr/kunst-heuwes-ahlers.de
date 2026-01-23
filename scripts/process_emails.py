@@ -17,7 +17,7 @@ CLIENT_PASSPHRASE = os.environ.get("CLIENT_PASSPHRASE")
 CLIENT_EMAIL = os.environ.get("CLIENT_EMAIL")
 IMAP_SERVER = os.environ.get("IMAP_SERVER", "imap.strato.de")
 SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.strato.de")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
+SMTP_PORT = 465
 
 PROCESSED_FILE = "processed_messages.txt"
 BASE_IMAGE_DIR = Path("static/images/kunstwerke")
