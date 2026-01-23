@@ -26,7 +26,6 @@ jobs:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
           IMAP_SERVER: ${{ secrets.IMAP_SERVER }}
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
       
       - name: Check for changes
         id: changes
