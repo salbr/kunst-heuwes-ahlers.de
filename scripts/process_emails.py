@@ -184,18 +184,17 @@ def save_processed_id(msg_id):
 
 def send_reply(to_addr, subject, body):
     msg = MIMEMultipart()
-    msg["From"] = EMAIL_USER
-    msg["To"] = to_addr
-    msg["Subject"] = subject
-    msg.attach(MIMEText(body, "plain", "utf-8"))
-
+    msg['From'] = EMAIL_USER
+    msg['To'] = to_addr
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
+    
     try:
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
+        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
             server.login(EMAIL_USER, EMAIL_PASS)
             server.send_message(msg)
     except Exception as e:
-        print(f"Failed to send reply: {e}")
+        print(f"Failed to send reply to {to_addr}: {e}")
 
 
 def extract_year_from_filename(filename):
