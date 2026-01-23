@@ -40,6 +40,8 @@ jobs:
           elif [ "$changed_files" = "processed_messages.txt" ]; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "Only processed_messages.txt changed, skipping build"
+            git config user.name "Email Bot"
+            git config user.email "bot@example.com"
             git commit -m "Update processed messages"
             git push
           else
