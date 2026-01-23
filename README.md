@@ -1,11 +1,36 @@
-# Grundsätzliche Konzepte:
+# Bilder per E-Mail verwalten
 
-Jedes Bild benötigt eine zusätzliche Datei, die Informationen zu dem Bild enthält. Das sind zum Beispiel Format, Größe und Name des Bildes.
-Die Datei MUSS genauso heißen, wie die Bilddatei, aber statt auf **.png** oder **.jpg** zu enden, muss sie auf **.ini** enden.
-Beispiel:
-![image](docs/Pasted_image_20240515144008.png)
-Die Datei hat folgenden Inhalt:
+Du kannst Bilder jetzt ganz einfach per E-Mail hinzufügen, bearbeiten oder löschen.
 
+## Grundsätzliche Konzepte
+
+Jedes Bild benötigt zwei Dateien:
+1. **Die Bilddatei** (z.B. `2025-1.jpg`)
+2. **Die Informationsdatei** (z.B. `2025-1.ini`)
+
+Beide Dateien MÜSSEN exakt den gleichen Namen haben, nur die Endung ist unterschiedlich.
+
+### Dateinamen-Format
+
+**WICHTIG:** Alle Dateien müssen nach diesem Schema benannt sein:
+```
+JAHR-NAME.ENDUNG
+```
+
+**Richtige Beispiele:**
+- `2025-1.jpg` und `2025-1.ini`
+- `2024-blumenwiese.jpg` und `2024-blumenwiese.ini`
+- `2023-12.png` und `2023-12.ini`
+
+**Falsche Beispiele:**
+- ❌ `bild1.jpg` (fehlt Jahr)
+- ❌ `25-1.jpg` (Jahr nicht 4-stellig)
+- ❌ `2025_1.jpg` (Unterstrich statt Bindestrich)
+- ❌ `2025-1.docx` (falscher Dateityp)
+
+### Die .ini Datei
+
+Die `.ini` Datei enthält Informationen zum Bild:
 ```ini
 [Metadata]
 Title=2023-1
@@ -15,34 +40,165 @@ Format=50 x 70 cm
 Status=Verkauft
 ```
 
-Alles hinter dem `=` Zeichen sind Informationen, die du verändern kannst, alles davor muss so bleiben, wie es ist.
+Alles **nach** dem `=` Zeichen kannst du ändern.  
+Alles **vor** dem `=` Zeichen MUSS so bleiben.
 
-Am besten kopierst du einfach eine der bereits vorhandenen **.ini** Dateien und benennst sie um. Umbenennen kannst du mit Rechtsklick auf die Datei und dann auf **Umbenennen** klicken ![image](docs/Pasted_image_20240515144341.png)
-Die Datei muss genauso heißen, wie die Bilddatei, das ist wichtig.
+---
 
-So, nun zum Ablauf, wenn du ein neues Bild hochladen möchtest:
+## Neues Bild hochladen oder Bild bearbeiten
 
-# Neues Bild hochladen
+### Schritt 1: E-Mail vorbereiten
 
-1. Sourcetree starten. Hat folgendes Logo: ![image](docs/Pasted_image_20240515140701.png)
-2. Es erscheint dieses Fenster. Nicht überwältigt sein, du musst da nur ein bisschen rumklicken :D:![image](docs/Pasted_image_20240515142915.png)
-3. Einmal oben links auf Pull ![image](docs/Pasted_image_20240515142943.png) klicken um eventuelle Änderungen von der Webseite auf dein PC zu kopieren.
-4. Nochmal auf Pull klicken im neuen Dialog: ![image](docs/Pasted_image_20240515143041.png)
-5. Auf ![image](docs/Pasted_image_20240515143117.png) oben rechts in der Leiste klicken. Dann öffnet sich ein Ordner, wo die Webseite drin ist: ![image](docs/Pasted_image_20240515143245.png)
-6. In den Ordner `static/images/kunstwerke` navigieren: ![image](docs/Pasted_image_20240515143352.png)
-7. Jetzt kannst du die neuen Bilder in die jeweiligen Ordner kopieren. Zum Beispiel ein neues Bild **DSC1000.jpg** dass du 2024 gemalt hast (Du kannst für jedes neue Jahr auch neue Ordner erstellen, die als namen das Jahr haben):
-   1. Öffne den Ordner 2024
-   2. Kopiere das Bild in den Ordner
-   3. Kopiere eine der vorhandenen **.ini** Dateien in den Ordner und benenne sie wie das Bild. Heißt das Bild **DSC1000.jpg** muss die **.ini** Datei **DSC1000.ini** heißen
-   4. Bearbeite die **.ini** Datei und passe die Informationen für Format, Titel und so weiter an.
-8. Nun musst du die Änderungen wieder von deinem PC auf die Webseite hochladen
-9. Öffne wieder Sourcetree und klicke auf ![image](docs/Pasted_image_20240515144958.png) ![image](docs/Pasted_image_20240515144943.png)
-10. Klicke im neuen Fenster auf ![image](docs/Pasted_image_20240515145052.png) ![image](docs/Pasted_image_20240515145121.png)
-11. Schreib in das unterste Feld, was du gemacht hast, z.B.: "Neues Bild in 2024 hinzugefügt" ![image](docs/Pasted_image_20240515145422.png)
-12. Klicke auf ![image](docs/Pasted_image_20240515145147.png) ![image](docs/Pasted_image_20240515145248.png)
-13. Klicke auf ![image](docs/Pasted_image_20240515145454.png) ![image](docs/Pasted_image_20240515145524.png)
-14. Klicke auf ![image](docs/Pasted_image_20240515145548.png) ![image](docs/Pasted_image_20240515145615.png)
+1. Erstelle eine neue E-Mail an: **bilder@example.net**
+2. Lass den Betreff leer (oder schreib irgendetwas rein, außer "DELETE")
 
-# Fertig
+### Schritt 2: Authentifizierung
 
-Kannst alles schließen, es dauert ein paar Minuten, bis die Änderungen sichtbar sind, da die Webseite neu gebaut wird. Maximal 10 Minuten.
+**In der ersten Zeile** der E-Mail schreibst du:
+```
+AUTH: DeinPasswort
+```
+
+Ersetze `DeinPasswort` durch das Passwort, das du von mir bekommen hast.
+
+**WICHTIG:**
+- Nach `AUTH:` muss ein Leerzeichen kommen
+- Das Passwort muss exakt stimmen (Groß-/Kleinschreibung beachten)
+- Das muss in der **ersten Zeile** stehen
+
+### Schritt 3: Dateien benennen
+
+Bevor du Dateien anhängst, müssen sie richtig benannt sein:
+
+**Windows:**
+1. Öffne den Ordner mit deinen Bildern
+2. Rechtsklick auf die Datei → **Umbenennen**
+3. Gib den neuen Namen ein (z.B. `2025-1.jpg`)
+4. Drücke Enter
+5. Wiederhole das für die `.ini` Datei
+
+**Mac:**
+1. Öffne den Ordner mit deinen Bildern
+2. Klicke einmal auf die Datei
+3. Drücke Enter
+4. Gib den neuen Namen ein (z.B. `2025-1.jpg`)
+5. Drücke Enter
+6. Wiederhole das für die `.ini` Datei
+
+### Schritt 4: Dateien anhängen
+
+1. Klicke auf das **Büroklammer-Symbol** (Anhang hinzufügen)
+2. Wähle **beide** Dateien aus:
+   - Das Bild (z.B. `2025-1.jpg`)
+   - Die `.ini` Datei (z.B. `2025-1.ini`)
+
+### Schritt 5: E-Mail senden
+
+Sende die E-Mail ab.
+
+### Beispiel einer fertigen E-Mail:
+```
+An: bilder@example.net
+Betreff: (leer oder beliebig)
+
+E-Mail-Text:
+AUTH: MeinGeheimesPasswort123
+
+Anhänge:
+📎 2025-1.jpg
+📎 2025-1.ini
+```
+
+### Fertig
+
+Die Website wird **innerhalb einer Stunde** automatisch aktualisiert.
+
+Du bekommst eine Bestätigungs-E-Mail mit den Ergebnissen.
+
+---
+
+## Bild löschen
+
+### Schritt 1: E-Mail vorbereiten
+
+1. Erstelle eine neue E-Mail an: **bilder@example.net**
+2. Schreibe in den **Betreff**: `DELETE`
+
+### Schritt 2: Authentifizierung und Dateinamen
+
+In die E-Mail schreibst du:
+```
+AUTH: DeinPasswort
+2025-5.jpg
+2025-5.ini
+```
+
+**Erste Zeile:** Dein Authentifizierungs-Passwort  
+**Weitere Zeilen:** Die Dateinamen, die gelöscht werden sollen (jeder Name in eine eigene Zeile)
+
+### Schritt 3: E-Mail senden
+
+Sende die E-Mail ab.
+
+### Beispiel einer Lösch-E-Mail:
+```
+An: bilder@example.net
+Betreff: DELETE
+
+E-Mail-Text:
+AUTH: MeinGeheimesPasswort123
+2025-5.jpg
+2025-5.ini
+2024-12.jpg
+2024-12.ini
+```
+
+### Fertig
+
+Die Bilder werden gelöscht und die Website wird automatisch aktualisiert.
+
+Du bekommst eine Bestätigungs-E-Mail mit den Ergebnissen.
+
+---
+
+## Häufige Fehler und Lösungen
+
+### "Authentifizierung fehlgeschlagen"
+
+**Lösung:**
+- Überprüfe, ob die erste Zeile exakt so aussieht: `AUTH: DeinPasswort`
+- Nach `AUTH:` muss ein Leerzeichen kommen
+- Das Passwort muss exakt stimmen (achte auf Groß-/Kleinschreibung)
+
+### "Keine Dateien gefunden"
+
+**Lösung:**
+- Hast du die Dateien wirklich angehängt? (Büroklammer-Symbol)
+- Sind die Dateinamen richtig? (müssen mit 4-stelliger Jahreszahl beginnen)
+- Hast du sowohl `.jpg` als auch `.ini` Datei angehängt?
+
+### "Datei nicht gefunden" beim Löschen
+
+**Lösung:**
+- Überprüfe die Schreibweise (Tippfehler?)
+- Schau auf der Website nach dem exakten Dateinamen
+- Achte auf Groß-/Kleinschreibung
+
+### "Datei abgelehnt"
+
+**Lösung:**
+- Dateiname muss mit 4-stelliger Jahreszahl beginnen (z.B. `2025`)
+- Nach dem Jahr muss ein Bindestrich `-` kommen
+- Erlaubte Endungen: `.jpg`, `.jpeg`, `.png`, `.ini`
+- Benenne die Datei um und sende die E-Mail erneut
+
+---
+
+## Wichtige Hinweise
+
+- **Geduld:** Die Website wird nicht sofort aktualisiert, sondern innerhalb einer Stunde
+- **Bestätigung:** Du bekommst immer eine Bestätigungs-E-Mail zurück
+- **Fehler:** Wenn etwas nicht funktioniert, bekommst du eine E-Mail mit detaillierten Anweisungen
+- **Beide Dateien:** Vergiss nicht, sowohl das Bild als auch die `.ini` Datei zu handhaben
+
+Bei Problemen: Ruf mich an oder schreib mir bei Signal.
