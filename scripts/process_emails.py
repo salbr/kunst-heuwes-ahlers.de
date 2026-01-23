@@ -232,7 +232,7 @@ def process_delete(msg, sender):
         return
 
     lines = body.split("\n")[1:]  # Skip AUTH line
-    filenames = [line.strip() for line in lines if line.strip()]
+    filenames = [line.strip().lower() for line in lines if line.strip()]
 
     if not filenames:
         send_reply(
@@ -306,6 +306,7 @@ def process_add_edit(msg, sender):
             filename = decode_header(filename)[0][0].decode(
                 decode_header(filename)[0][1]
             )
+        filename = filename.lower()
 
         # Validate filename format
         year = extract_year_from_filename(filename)
@@ -314,7 +315,7 @@ def process_add_edit(msg, sender):
             continue
 
         # Only accept .jpg, .jpeg, .png, .ini
-        ext = Path(filename).suffix.lower()
+        ext = Path(filename).suffix
         if ext not in [".jpg", ".jpeg", ".png", ".ini"]:
             rejected.append(f"{filename} (ungültiger Dateityp)")
             continue
