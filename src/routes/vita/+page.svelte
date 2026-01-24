@@ -74,15 +74,7 @@
 
     <h2><strong>Ausstellungen</strong></h2>
     <p>
-        2014 Einzelausstellung Klinikum Detmold<br />
-        2014 Gemeinschaftsausstellung der TeilnehmerInnen der Malworkshops von Axel
-        Plöger<br />
-        2015 Einzelausstellung Gemeindehaus am Markt, Detmold<br />
-        2015 Einzelausstellung Klinikum Detmold<br />
-        2016 Einzelausstellung Klinikum Detmold<br />
-        2016 Einzelausstellung Gemeindepsychiatrisches Zentrum Detmold<br />
-        2018 Einzelausstellung Klinikum Detmold<br />
-        2020 Einzelausstellung Kreishaus Detmold
+        Seit 2014 regelmäßige Ausstellungen im Raum Lippe
     </p>
 
     <h2><strong>Veranstaltungen</strong></h2>
