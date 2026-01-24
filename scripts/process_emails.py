@@ -9,6 +9,7 @@ from pathlib import Path
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from html.parser import HTMLParser
 
 # Config from environment
 EMAIL_USER = os.environ.get("EMAIL_USER")
@@ -143,6 +144,7 @@ FALSCHE BEISPIELE:
 
 Die Website wird innerhalb einer Stunde aktualisiert."""
 
+
 HELP_REJECTED_FILES = """WARUM WURDEN DATEIEN ABGELEHNT?
 
 Die Dateinamen müssen diesem Format folgen:
@@ -168,6 +170,38 @@ WICHTIG:
 - Zu jedem Bild gehört eine .ini Datei mit gleichem Namen
 
 Nachdem du die Dateien umbenannt hast, sende die E-Mail erneut."""
+def decode_quoted_printable(text):
+    # Remove soft line breaks (= followed by newline)
+    text = re.sub(r"=\s*\n", "", text)
+
+    # Decode =XX patterns to bytes then UTF-8
+    def replace_hex(match):
+        return bytes([int(match.group(1), 16)])
+
+    # Convert string to bytes, replace patterns, decode UTF-8
+    text_bytes = text.encode("latin1")
+    text_bytes = re.sub(rb"=([0-9A-F]{2})", replace_hex, text_bytes)
+    return text_bytes.decode("utf-8")
+
+
+class TextExtractor(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.text = []
+
+    def handle_data(self, data):
+        self.text.append(data)
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "br":
+            self.text.append("\n")
+
+    def handle_entityref(self, name):
+        if name == "nbsp":
+            self.text.append(" ")
+
+    def get_text(self):
+        return "".join(self.text)
 
 
 def load_processed_ids():
@@ -204,18 +238,39 @@ def extract_year_from_filename(filename):
 
 def validate_auth(msg):
     body = ""
-    if msg.is_multipart():
-        for part in msg.walk():
-            if part.get_content_type() == "text/plain":
-                body = part.get_payload(decode=True).decode("utf-8", errors="ignore")
-                break
-    else:
-        body = msg.get_payload(decode=True).decode("utf-8", errors="ignore")
 
-    first_line = body.split("\n")[0].strip()
-    auth_match = re.match(r"^AUTH:\s*(.+)$", first_line, re.IGNORECASE)
+    # Extract all text/html parts
+    for part in msg.walk():
+        content_type = part.get_content_type()
 
-    if not auth_match or auth_match.group(1).strip() != CLIENT_PASSPHRASE:
+        if content_type not in ["text/plain", "text/html"]:
+            continue
+
+        try:
+            content = part.get_payload(decode=True)
+            if not content:
+                continue
+
+            text = content.decode("utf-8", errors="ignore")
+
+            # Handle quoted-printable encoding
+            if part.get("Content-Transfer-Encoding", "").lower() == "quoted-printable":
+                text = decode_quoted_printable(text)
+
+            # Extract text from HTML
+            if content_type == "text/html":
+                extractor = TextExtractor()
+                extractor.feed(text)
+                text = extractor.get_text()
+
+            body += text + "\n"
+        except Exception as e:
+            print(f"Failed to parse part: {e}")
+
+    # Check passphrase
+    if CLIENT_PASSPHRASE not in body:
+        print(f"Auth failed: passphrase not found")
+        print(f"Body preview: {body[:200]}")
         return False, body
 
     return True, body
