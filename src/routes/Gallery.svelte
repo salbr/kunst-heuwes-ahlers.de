@@ -172,12 +172,10 @@ function getPreviousPicture(currentPic: ImgType) {
             <h6 class="modalHeader">FORMAT</h6>
             <p class="modalDescription">{selectedImage.metadata?.format || ''}</p>
           </div>
-          {#if selectedImage.metadata?.status}
           <div class="modalMetadataItem">
             <h6 class="modalHeader">STATUS</h6>
-            <p class="modalDescription">{selectedImage.metadata?.status || ''}</p>
+            <p class="modalDescription">{selectedImage.metadata?.status || '-'}</p>
           </div>
-          {/if}
         </div>
       </div>
     </div>
