@@ -170,6 +170,8 @@ WICHTIG:
 - Zu jedem Bild gehört eine .ini Datei mit gleichem Namen
 
 Nachdem du die Dateien umbenannt hast, sende die E-Mail erneut."""
+
+
 def decode_quoted_printable(text):
     # Remove soft line breaks (= followed by newline)
     text = re.sub(r"=\s*\n", "", text)
@@ -218,11 +220,11 @@ def save_processed_id(msg_id):
 
 def send_reply(to_addr, subject, body):
     msg = MIMEMultipart()
-    msg['From'] = EMAIL_USER
-    msg['To'] = to_addr
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain', 'utf-8'))
-    
+    msg["From"] = EMAIL_USER
+    msg["To"] = to_addr
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain", "utf-8"))
+
     try:
         with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
             server.login(EMAIL_USER, EMAIL_PASS)
