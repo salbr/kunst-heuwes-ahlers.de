@@ -22,7 +22,7 @@ SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.strato.de")
 SMTP_PORT = 465
 
 PROCESSED_FILE = "processed_messages.txt"
-BASE_IMAGE_DIR = Path("static/images/kunstwerke")
+BASE_IMAGE_DIR = Path("src/lib/images/kunstwerke")
 
 # Error messages and help texts
 ERROR_AUTH_FAILED = """Die Authentifizierung ist fehlgeschlagen.
