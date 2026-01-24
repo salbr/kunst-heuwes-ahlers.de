@@ -213,9 +213,9 @@ def validate_auth(msg):
         body = msg.get_payload(decode=True).decode("utf-8", errors="ignore")
 
     first_line = body.split("\n")[0].strip()
-    auth_match = re.match(r"^AUTH:\s*(.+)$", first_line, re.IGNORECASE)
+    auth_match = re.match(r"^*(.+)$", first_line, re.IGNORECASE)
 
-    if not auth_match or auth_match.group(1).strip() != CLIENT_PASSPHRASE:
+    if not CLIENT_PASSPHRASE in auth_match:
         return False, body
 
     return True, body
