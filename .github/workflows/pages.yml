@@ -1,7 +1,5 @@
-name: Deploy to GitHub Pages
+name: Process Emails, Build and Deploy to Github Pages
 on:
-  push:
-    branches: "main"
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
