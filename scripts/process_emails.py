@@ -211,12 +211,11 @@ def validate_auth(msg):
                 break
     else:
         body = msg.get_payload(decode=True).decode("utf-8", errors="ignore")
-
-    first_line = body.split("\n")[0].strip()
-    if not CLIENT_PASSPHRASE in first_line:
-        print("Auth failed")
+    
+    if CLIENT_PASSPHRASE not in body:
+        print("Auth failed: passphrase not found in body")
         return False, body
-
+    
     return True, body
 
 
