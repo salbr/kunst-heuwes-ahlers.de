@@ -214,6 +214,7 @@ def validate_auth(msg):
 
     first_line = body.split("\n")[0].strip()
     if not CLIENT_PASSPHRASE in first_line:
+        print("Auth failed")
         return False, body
 
     return True, body
