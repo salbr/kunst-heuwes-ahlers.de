@@ -77,9 +77,16 @@ function onSwipeRight() {
     filteredImages = [];
     if (year === "all") {
       filteredImages = items.slice(0, -1).reverse();
+      filteredImages.sort((img1,img2) => 
+      img1.metadata?.title.toLowerCase()
+      .localeCompare(img2.metadata?.title.toLowerCase()));
+
       return;
     }
     filteredImages = items.filter(img => img.year === year);
+    filteredImages.sort((img1, img2) => 
+        img1.metadata.title.toLowerCase()
+        .localeCompare(img2.metadata.title.toLowerCase()));
   }
   
 function getNextPicture(currentPic: ImgType) {
@@ -165,11 +172,12 @@ function getPreviousPicture(currentPic: ImgType) {
             <h6 class="modalHeader">FORMAT</h6>
             <p class="modalDescription">{selectedImage.metadata?.format || ''}</p>
           </div>
-          
+          {#if selectedImage.metadata?.status}
           <div class="modalMetadataItem">
             <h6 class="modalHeader">STATUS</h6>
             <p class="modalDescription">{selectedImage.metadata?.status || ''}</p>
           </div>
+          {/if}
         </div>
       </div>
     </div>
