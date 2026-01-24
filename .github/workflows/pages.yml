@@ -3,7 +3,7 @@ on:
   push:
     branches: "main"
   schedule:
-    - cron: '*/9 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+      - name: Install html2text
+        run: pip install html2text
       - name: Process emails
         run: python scripts/process_emails.py
         env:

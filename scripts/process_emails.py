@@ -10,6 +10,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from html.parser import HTMLParser
+import html2text
 
 # Config from environment
 EMAIL_USER = os.environ.get("EMAIL_USER")
@@ -248,31 +249,17 @@ def validate_auth(msg):
         if content_type not in ["text/plain", "text/html"]:
             continue
 
-        try:
-            content = part.get_payload(decode=True)
-            if not content:
-                continue
+        content = part.get_payload(decode=True)
 
-            text = content.decode("utf-8", errors="ignore")
+        if not content:
+            continue
+        body = content.decode("utf-8", errors="ignore")
 
-            # Handle quoted-printable encoding
-            if part.get("Content-Transfer-Encoding", "").lower() == "quoted-printable":
-                text = decode_quoted_printable(text)
-
-            # Extract text from HTML
-            if content_type == "text/html":
-                extractor = TextExtractor()
-                extractor.feed(text)
-                text = extractor.get_text()
-
-            body += text + "\n"
-        except Exception as e:
-            print(f"Failed to parse part: {e}")
-
+        if content_type == "text/html":
+            body = html2text.html2text(body)
     # Check passphrase
     if CLIENT_PASSPHRASE not in body:
-        print(f"Auth failed: passphrase not found")
-        print(f"Body preview: {body[:200]}")
+        print("Auth failed: passphrase not found")
         return False, body
 
     return True, body
@@ -289,7 +276,9 @@ def process_delete(msg, sender):
         return
 
     lines = body.split("\n")[1:]  # Skip AUTH line
-    filenames = [line.strip().lower() for line in lines if line.strip()]
+    filenames = [
+        line.strip().lower().replace(" ", "") for line in lines if line.strip()
+    ]
 
     if not filenames:
         send_reply(
