@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+on:
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Clean up filenames
+        run: |
+          find . -type f -name '*.JPG' -exec sh -c 'mv "$1" "${1%.*}.jpg"' sh {} \;
+          find . -type f -name '*.JPEG' -exec sh -c 'mv "$1" "${1%.*}.jpeg"' sh {} \;
+          find . -type f -name '*.PNG' -exec sh -c 'mv "$1" "${1%.*}.png"' sh {} \;
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      
+      - name: Install dependencies
+        run: npm install
+    
+      - name: build
+        env:
+          BASE_PATH: "/${{ github.event.repository.name }}"
+        run: npm run build
+      
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "build/"
+      
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
