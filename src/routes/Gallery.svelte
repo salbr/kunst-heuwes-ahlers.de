@@ -186,10 +186,10 @@ function getPreviousPicture(currentPic: ImgType) {
 </section>
 
 <style>
-  section {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
+section {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 .yearFilterButtonGroup {
   display: flex;
@@ -203,53 +203,52 @@ function getPreviousPicture(currentPic: ImgType) {
   box-sizing: border-box;
   justify-content: safe center; 
 }
-  .yearFilterButtonGroup::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  .yearFilterButtonGroup::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 2px;
-  }
-  
-  .yearButton {
-    padding: 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    background-color: transparent;
-    color: #374151;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-    transition: all 0.15s;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  
-  .yearButton:hover {
-    background-color: #f3f4f6;
-  }
-  
-  .yearButton:focus {
-    outline: 2px solid #27292d;
-    outline-offset: 2px;
-  }
 
-  /* Year Headline */
-  .currentYearHeadline {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    border-bottom: 1px solid black;
-    font-size: 2rem;
-    font-family: "Raleway-Bold";
-    color: black;
-    text-align: center;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-  }
+.yearFilterButtonGroup::-webkit-scrollbar {
+  height: 4px;
+}
 
-  /* Gallery Grid */
+.yearFilterButtonGroup::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+.yearButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  background-color: transparent;
+  color: #374151;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.yearButton:hover {
+  background-color: #f3f4f6;
+}
+
+.yearButton:focus {
+  outline: 2px solid #27292d;
+  outline-offset: 2px;
+}
+
+.currentYearHeadline {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+  font-size: 2rem;
+  font-family: "Raleway-Bold";
+  color: black;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
 .galleryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
@@ -310,7 +309,6 @@ function getPreviousPicture(currentPic: ImgType) {
   }
 }
 
-  /* Modal Styles */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -323,6 +321,7 @@ function getPreviousPicture(currentPic: ImgType) {
   justify-content: center;
   z-index: 1000;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
   overflow: hidden;
   animation: fadeIn 0.3s ease-out;
@@ -332,8 +331,8 @@ function getPreviousPicture(currentPic: ImgType) {
   position: relative;
   background-color: white;
   border-radius: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   box-shadow: none;
   animation: slideUp 0.3s ease-out;
@@ -358,83 +357,121 @@ function getPreviousPicture(currentPic: ImgType) {
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .modal-close:hover {
   background: rgba(0, 0, 0, 0.2);
 }
 
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5rem 2rem 2rem;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  gap: 1rem;
+}
+
 .modalHeader {
   font-weight: bold;
   color: #333333;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  padding: 0;
   font-family: "Raleway-Bold";
+  flex-shrink: 0;
 }
 
 .modalDescription {
   font-weight: normal;
   color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+.modalImageContainer {
+  height: 60vh;
+  width: 100%;
+  display: block;
+  flex-shrink: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.modalImageContainer :global(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .modalMetadata {
+  height: 20vh;
   width: 100%;
   max-width: 1200px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  padding: 0.5rem;
+  flex-shrink: 0;
+  align-items: start;
+  overflow: hidden;
 }
 
 .modalMetadataItem {
   text-align: center;
-  flex: 0 1 auto;
-  min-width: 150px;
-}
-.modalContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  gap: 1rem;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-}
-.modalImageContainer {
-  flex: 0 1 auto;
-  width: 100%;
-  max-width: 90vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modalImageContainer :global(img) {
-  max-width: 100%;
-  max-height: 60vh;
-  object-fit: contain;
+  gap: 0.25rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
-@media (min-width: 640px) {
-  .modal-close {
-    top: 2rem;
-    right: 2rem;
-  }
-  
-  .modalContainer {
-    padding: 2rem;
-    gap: 2rem;
-  }
-  
-  .modalImageContainer :global(img) {
-    max-height: 65vh;
+.modalMetadataItem .modalHeader {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.modalMetadataItem .modalDescription {
+  font-size: 0.85rem;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .modalImageContainer {
+    height: 65vh;
+    padding: 0.5rem;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -455,13 +492,4 @@ function getPreviousPicture(currentPic: ImgType) {
   }
 }
 
-@media (min-width: 640px) {
-  .modalContainer {
-    padding: 6rem 4rem 4rem 4rem;
-  }
-  
-  .modalImageContainer :global(img) {
-    max-height: 75vh;
-  }
-}
 </style>
