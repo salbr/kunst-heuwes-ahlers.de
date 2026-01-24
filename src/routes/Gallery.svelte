@@ -25,31 +25,31 @@ export let items: ImgType[];
   filterImages(selectedYear);
   let selectedImage: ImgType | null = null;
 
-  function keypressModalHandler(event: KeyboardEvent) {
-    event.preventDefault()
-    if (event.key === "Escape") {
-      closeModal();
-    }
-    if (event.key === "ArrowLeft") {
-      onSwipeLeft();
-    } else if (event.key === "ArrowRight") {
-      onSwipeRight();
-    }
+function keypressModalHandler(event: KeyboardEvent) {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeModal();
   }
+  else if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    onSwipeLeft();
+  } else if (event.key === "ArrowRight") {
+    event.preventDefault();
+    onSwipeRight();
+  }
+}
 
 function onSwipeLeft() {
   if (selectedImage) {
-    const nextImage = getNextPicture(selectedImage);
-    closeModal();
-    openModal(nextImage);
+    const prevImage = getPreviousPicture(selectedImage);
+    selectedImage = prevImage;
   }
 }
 
 function onSwipeRight() {
   if (selectedImage) {
-    const prevImage = getPreviousPicture(selectedImage);
-    closeModal();
-    openModal(prevImage);
+    const nextImage = getNextPicture(selectedImage);
+    selectedImage = nextImage;
   }
 }
   
@@ -90,6 +90,7 @@ function onSwipeRight() {
   }
   
 function getNextPicture(currentPic: ImgType) {
+  console.log(filteredImages)
   const currentIndex = filteredImages.indexOf(currentPic);
   if (currentIndex === filteredImages.length - 1) {
     return filteredImages[0];
@@ -143,7 +144,6 @@ function getPreviousPicture(currentPic: ImgType) {
       <button class="modal-close" on:click={closeModal} aria-label="Close">&times;</button>
       <div
         class="modalContainer"
-        on:keydown={keypressModalHandler}
         role="dialog"
         tabindex="-1"
       >
