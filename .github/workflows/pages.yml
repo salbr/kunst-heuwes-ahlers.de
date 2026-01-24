@@ -1,7 +1,7 @@
 name: Process Emails, Build and Deploy to Github Pages
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
